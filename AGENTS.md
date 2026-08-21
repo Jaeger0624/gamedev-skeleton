@@ -1,7 +1,8 @@
 # AGENTS.md — GameDev-Skeleton 运行协议
 
 > 本文件是 gamedev-harness 的**运行时入口**。任何 agent（WorkBuddy / Codex / Claude Code / DSH 等）进入本项目，必须先读本文件，并按本文件定义的协议行动。
-> 全局骨架挂载点：`C:/Users/32337/.workbuddy/gamedev-harness/`（以下记作 `$HARNESS`）。骨架本体跨项目唯一，判据/原子的评分与演化只发生在全局层。
+> 全局骨架挂载点：`C:/Users/32337/.gamedev-harness/`（以下记作 `$HARNESS`）。骨架本体跨项目唯一，判据/原子的评分与演化只发生在全局层。
+> 注：WorkBuddy 中 `~/.workbuddy/gamedev-harness/` 是指向 `~/.gamedev-harness/` 的符号链接，两者等价。
 
 ## 0. 最高原则（不可妥协）
 
@@ -41,7 +42,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 1. **检查点义务**：流水线每完成一个阶段，产出文件写入 `runs/<YYYY-MM-DD>-<任务名>/`，文件名对齐阶段编号（`00-fact-sheet` … `05-review`）。禁止跳阶段、禁止合并产出。
 2. **判据挂载义务**：设计初稿中每个关键决策必须挂至少一条 `$HARNESS/verdicts/` 判据作为依据；无判据可挂时，在回顾阶段提出新判据候选。
 3. **回写义务**（阶段 5 回顾自检时执行）：
-   - 原子使用记录追加到 `$HARNESS/atoms/<对应原子>.md` 的使用记录表
+   - 原子使用记录追加到 `$HARNESS/memory/narrative-chain.md` 对应条目的"原子使用明细"段
    - 判据有效性记录追加到 `$HARNESS/verdicts/<对应判据>.md`
    - 叙事摘要追加到 `$HARNESS/memory/narrative-chain.md`（格式见该文件头部）
 4. **事实义务**：设计对象的事实信息（现有机制/卡池/社区共识）必须先检索核实，禁止臆测。检索结论入 `00-fact-sheet.md` 并注明来源。
