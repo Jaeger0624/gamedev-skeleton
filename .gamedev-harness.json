@@ -4,7 +4,7 @@
   "genre": "custom",
   "role": "toolkit",
   "harnessRoot": "C:\\Users\\32337\\.gamedev-harness",
-  "active": true,
+  "active": false,
   "activatedAt": "2026-08-21T21:05:58.806Z",
   "overrides": {
     "core_atoms_add": [],
