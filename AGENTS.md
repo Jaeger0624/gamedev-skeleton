@@ -44,7 +44,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 
 **`incubation` 必读**：本文件、HARNESS.md、narrative-chain.md 最近 3 条。原子池按需发散，不定清单。
 
-**`reading` 必读**（每节阅读轮）：①`books/<slug>/book.json` 摘要（元信息/状态/游标/未读清单）②最近 N 轮 `读书日志.md` 摘要（上次读到哪、怎么看的）③当前节正文（只带这一节）④相关现有判据/原子对照（查重）。
+**`reading` 必读**（每节阅读轮）：①`books/<slug>/book.json` 摘要（元信息/状态/游标/未读清单）②最近 N 轮 `读书日志.md` 摘要（上次读到哪、怎么看的）③当前节正文（只带这一节）④相关现有判据/原子对照（查重）。执行手册见 [`READING-PROTOCOL.md`](./READING-PROTOCOL.md)。
 **`reading` 明确不读**：全书全文、其他书、与本书无关的框架内容与环境噪音。
 **`reading` 沉淀**：每节全量入账（提取+我的看法+你的判断）；你圈选认同的**当场**走四维审计入库（`harness_atom_propose`/`harness_verdict_propose`/skeleton 写入），来源字段 = 书 + 节 + 页码；每轮叙事链回写一条。
 

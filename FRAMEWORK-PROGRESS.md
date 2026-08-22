@@ -115,7 +115,7 @@
 
 | ID | 内容 | 状态 |
 |---|---|---|
-| G-01 | `books/` 目录规约落地：`<slug>/book.json`（状态机 schema，§5.4）+ `读书日志.md`（每轮全量入账格式）+ 切片文本；`.gitignore` 加 `books/` | **已完成 2026-08-23**（规约） |
+| G-01 | `books/` 目录规约落地：`<slug>/book.json`（状态机 schema，§5.4）+ `读书日志.md`（每轮全量入账格式）+ 切片文本；`.gitignore` 加 `books/`；**执行手册 `READING-PROTOCOL.md`**（§5.4 的可操作化：入库/状态机/阅读轮五步/注入包/日志格式/台账） | **已完成 2026-08-23**（规约+手册） |
 | G-02 | `AGENTS.md` §1 `reading` task + §2 注入规则（必读/明确不读/沉淀规则）——协议落地 | **已完成 2026-08-23** |
 | G-03 | `reading` task 接入上下文注入包实现 + 阅读轮五步执行（人工试跑：书 A/B 各读 2-3 节） | 待启动（书 A/B 就位即试跑） |
 | G-04 | 工具固化（试跑后）：`harness_book_add` / `harness_book_status` / `harness_book_round`（一轮五步执行+记录）/ `harness_book_map`；sources/ 登记联动 | 待启动（随 G-03） |
