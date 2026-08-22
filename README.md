@@ -26,6 +26,7 @@ GameDev-Skeleton/                ← 本仓库：框架的开发家（协议/进
 ├── FRAMEWORK-PROGRESS.md         ← 进度与待办（A-H 组）
 ├── READING-PROTOCOL.md           ← "读书"学习方法执行手册
 ├── runs/                         ← 框架历史档案（可追溯的实验与演化记录）
+├── materials/                    ← 原始资料（视频原文/观点提取等）
 ├── books/                        ← 成长资料：电子书/读书记录（gitignore，不入库）
 └── gamedev-harness-dashboard/    ← DSH 插件：Harness 总控台（面板 + 工具 + API）
 
