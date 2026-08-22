@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "project": "GameDev-Skeleton",
+  "task": "meta",
+  "pipeline": "card-batch-design",
+  "title": "插件L2.1流转验证",
+  "dir": "E:\\Vibe-Projects\\GameDev-Skeleton\\runs\\2026-08-22-插件L2.1流转验证",
+  "startedAt": "2026-08-21T21:16:47.090Z",
+  "updatedAt": "2026-08-22T16:59:28.501Z",
+  "stage": "05-review",
+  "stages": [
+    {
+      "id": "00-fact-sheet",
+      "name": "事实档案建立（前置）",
+      "output": "fact-sheet.md",
+      "atoms": [
+        "pattern-recognition",
+        "流派分布",
+        "社区缺口）"
+      ],
+      "checkpoint": "档案中每条事实须可溯源到检索来源"
+    },
+    {
+      "id": "01-concept",
+      "name": "概念定位",
+      "output": "01-concept.md",
+      "atoms": [
+        "perspective-shift"
+      ],
+      "checkpoint": "每个概念必须回答\"它不给什么\"（约束求解前置）"
+    },
+    {
+      "id": "02-draft",
+      "name": "初稿",
+      "output": "02-draft.md",
+      "atoms": [
+        "manufacture-love"
+      ],
+      "checkpoint": "每张卡挂至少一条 verdicts/ 判据作为依据"
+    },
+    {
+      "id": "03-attack",
+      "name": "攻击性检查",
+      "output": "03-attack.md",
+      "atoms": [
+        "extreme-extrapolation"
+      ],
+      "checkpoint": "至少模拟\"最优情况/最坏情况/与最强现有卡组合\"三种推演；**与本角色最强现有卡逐一对比，防碾压**（2026-08-21 储君案例：抓到 3 处碾压）"
+    },
+    {
+      "id": "04-final",
+      "name": "减法落定",
+      "output": "04-final.md",
+      "atoms": [
+        "subtraction-judgment"
+      ],
+      "checkpoint": "终稿卡的文本长度应 ≤ 初稿的 80%"
+    },
+    {
+      "id": "05-review",
+      "name": "回顾自检",
+      "output": "05-review.md",
+      "atoms": [],
+      "checkpoint": ""
+    }
+  ],
+  "verdicts": [],
+  "narrative": [
+    {
+      "date": "2026-08-21",
+      "title": "2026-08-21 储君系列补强（strategy-roguelike / card-batch-design）"
+    },
+    {
+      "date": "2026-08-22",
+      "title": "2026-08-22 harness 骨架迭代：运行协议化（meta / 非设计 run）"
+    },
+    {
+      "date": "2026-08-22",
+      "title": "2026-08-22 喂牛顿花生第4章设计（puzzle / card-batch-design 适配）"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-08-21T21:16:47.090Z",
+      "stage": "",
+      "event": "start",
+      "note": "pipeline=card-batch-design task=meta"
+    },
+    {
+      "at": "2026-08-21T21:17:20.162Z",
+      "stage": "00-fact-sheet",
+      "event": "checkpoint",
+      "note": "事实档案已建立，含来源标注"
+    },
+    {
+      "at": "2026-08-22T16:59:28.501Z",
+      "stage": "05-review",
+      "event": "writeback",
+      "note": "1 项回写"
+    }
+  ],
+  "completed": true
+}
