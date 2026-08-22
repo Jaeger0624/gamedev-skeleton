@@ -3,6 +3,7 @@
 > 本文件是 gamedev-harness 的**运行时入口**。任何 agent（WorkBuddy / Codex / Claude Code / DSH 等）进入本项目，必须先读本文件，并按本文件定义的协议行动。
 > 全局骨架挂载点：`C:/Users/32337/.gamedev-harness/`（以下记作 `$HARNESS`）。骨架本体跨项目唯一，判据/原子的评分与演化只发生在全局层。
 > 注：WorkBuddy 中 `~/.workbuddy/gamedev-harness/` 是指向 `~/.gamedev-harness/` 的符号链接，两者等价。
+> 本工作目录定位：**框架核心项目的开发目录**——框架本身即核心项目（开发/规范/生长发生在这里），**不关联任何具体游戏项目**；书籍等成长资料放 `books/<slug>/`（gitignore），读书所得沉淀进全局骨架。
 
 ## 0. 最高原则（不可妥协）
 
@@ -16,6 +17,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 | 设计卡牌/单位/遗物/事件等**具体设计单元** | `unit-design` | `$HARNESS/pipelines/card-batch-design.md` |
 | 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（首版已建，未实测，见 §4） |
 | **分享书/文章/讲座/视频，要求提取方法体系或观点并沉淀** | `knowledge-sinking` | `$HARNESS/pipelines/knowledge-sinking.md`（待建，见 §4 与进度文档 E 组） |
+| **读书（继续读某本书的一节，交流取舍、沉淀）** | `reading` | `books/<slug>/` 书级状态机 + 阅读轮（见 §2 与进度文档 §5.4/G 组；单节沉淀复用 knowledge-sinking） |
 | 审查/修改/迭代已有设计产出 | `design-review` | 定位原 run 的检查点，从对应阶段续走 |
 | **框架/插件/契约/骨架结构/协议文件**的改动（本仓库角色：toolkit） | `harness-dev` | 设计流水线不适用；走 §2 开发注入 + §3.6 开发义务 |
 | 以上皆非（闲聊/问答/资料查询） | `free` | 不走流水线，但仍适用 §3 义务 |
@@ -40,6 +42,10 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 - 环境原况、磁盘状态等与"当下设计判断"无关的噪音
 
 **`incubation` 必读**：本文件、HARNESS.md、narrative-chain.md 最近 3 条。原子池按需发散，不定清单。
+
+**`reading` 必读**（每节阅读轮）：①`books/<slug>/book.json` 摘要（元信息/状态/游标/未读清单）②最近 N 轮 `读书日志.md` 摘要（上次读到哪、怎么看的）③当前节正文（只带这一节）④相关现有判据/原子对照（查重）。
+**`reading` 明确不读**：全书全文、其他书、与本书无关的框架内容与环境噪音。
+**`reading` 沉淀**：每节全量入账（提取+我的看法+你的判断）；你圈选认同的**当场**走四维审计入库（`harness_atom_propose`/`harness_verdict_propose`/skeleton 写入），来源字段 = 书 + 节 + 页码；每轮叙事链回写一条。
 
 ## 3. 义务条款（所有非 free task 适用）
 
