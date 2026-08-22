@@ -2,6 +2,7 @@
   "project": "GameDev-Skeleton",
   "dir": "E:\\Vibe-Projects\\GameDev-Skeleton",
   "genre": "custom",
+  "role": "toolkit",
   "harnessRoot": "C:\\Users\\32337\\.gamedev-harness",
   "active": true,
   "activatedAt": "2026-08-21T21:05:58.806Z",
@@ -10,6 +11,6 @@
     "core_atoms_remove": [],
     "divergent_atoms_add": [],
     "divergent_atoms_remove": [],
-    "notes": ""
+    "notes": "toolkit 角色"
   }
 }
