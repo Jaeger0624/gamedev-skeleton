@@ -24,9 +24,10 @@
 
 | 位置 | 角色 | 内容 |
 |---|---|---|
-| `E:\Vibe-Projects\GameDev-Skeleton` | 框架开发目录（本工作区） | 协议（AGENTS.md）、定位（本文件）、进度（FRAMEWORK-PROGRESS）、执行手册（READING-PROTOCOL）、历史 runs/ 档案、books/ 成长资料（gitignore）、插件子仓库 |
+| `E:\Vibe-Projects\GameDev-Skeleton` | 框架开发目录（本工作区） | 协议（AGENTS.md）、定位（本文件）、进度（FRAMEWORK-PROGRESS）、执行手册（READING-PROTOCOL）、历史 runs/ 档案、materials/ 原始资料、books/ 成长资料（gitignore）、插件子仓库 |
 | 　`gamedev-harness-dashboard` | 接驳层产品（独立迭代/发布） | src/host + client 面板、ADAPTER 契约、ROADMAP |
 | `C:\Users\32337\.gamedev-harness` | 方法体系**唯一来源**（全局骨架，独立 git） | atoms/、verdicts/、packs/、pipelines/、skeleton/、memory/、decisions/、projects/、sources/ |
+| `materials/` | 原始资料（来源材料归档） | 视频原文/观点提取等原始输入（不入骨架） |
 | `books/<slug>/` | 成长资料（书文本/状态/日志，gitignore） | 入库切片、book.json、读书日志.md |
 | `runs/` | **框架历史档案**（历史可追溯） | 框架自身演化记录与历史实验存档；**未来真实游戏项目的 run 放各自项目目录** |
 
