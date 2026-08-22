@@ -15,6 +15,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 |---|---|---|
 | 设计卡牌/单位/遗物/事件等**具体设计单元** | `unit-design` | `$HARNESS/pipelines/card-batch-design.md` |
 | 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（首版已建，未实测，见 §4） |
+| **分享书/文章/讲座/视频，要求提取方法体系或观点并沉淀** | `knowledge-sinking` | `$HARNESS/pipelines/knowledge-sinking.md`（待建，见 §4 与进度文档 E 组） |
 | 审查/修改/迭代已有设计产出 | `design-review` | 定位原 run 的检查点，从对应阶段续走 |
 | **框架/插件/契约/骨架结构/协议文件**的改动（本仓库角色：toolkit） | `harness-dev` | 设计流水线不适用；走 §2 开发注入 + §3.6 开发义务 |
 | 以上皆非（闲聊/问答/资料查询） | `free` | 不走流水线，但仍适用 §3 义务 |
@@ -59,7 +60,8 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 ## 4. 骨架缺口登记（执行中遇到即记录）
 
 - `pipelines/incubation.md` **已建**（2026-08-22 首版沉淀，无实测）——执行首个真实 `incubation` run 后须修订；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
-- `skeleton/` 三块为空——从真实设计复盘中生长，禁止批量编造
+- `skeleton/` 三块为空——生长来源 = **真实项目复盘 或 外部输入**（书/文章/讲座，须带来源 + 用户圈选确认）；继续禁止无来源编造
+- `pipelines/knowledge-sinking.md` **未建**——外部输入沉淀模式（来源提取→拆解→审计→用户圈选→写入）已立规范（见进度文档 §5 与 E 组），首篇输入试跑后沉淀为流水线
 - 双轨检索：字面轨**已建**（`harness_recall` BM25 段落检索）；向量轨**未建**——接 DSH mnemon 记忆空间（不自建 embedding）
 - 度量闭环**无真实数据**：评分趋势 0 条 / 原子验证 0/3 / 判据有效性无真实 run 行——机制全就位，只欠真实 run 点亮（待办 A-01）
 - `L2.3` 核心/设计 agent 分工**未建**；task 机制半成品（工具分级/用户画像/共识 top3 自动注入/原子池按 task 装配未做）
