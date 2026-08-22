@@ -14,7 +14,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 | 触发信号（用户意图） | Task 类型 | 进入流水线 |
 |---|---|---|
 | 设计卡牌/单位/遗物/事件等**具体设计单元** | `unit-design` | `$HARNESS/pipelines/card-batch-design.md` |
-| 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（待建，见 §4） |
+| 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（首版已建，未实测，见 §4） |
 | 审查/修改/迭代已有设计产出 | `design-review` | 定位原 run 的检查点，从对应阶段续走 |
 | **框架/插件/契约/骨架结构/协议文件**的改动（本仓库角色：toolkit） | `harness-dev` | 设计流水线不适用；走 §2 开发注入 + §3.6 开发义务 |
 | 以上皆非（闲聊/问答/资料查询） | `free` | 不走流水线，但仍适用 §3 义务 |
@@ -58,9 +58,9 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 
 ## 4. 骨架缺口登记（执行中遇到即记录）
 
-- `pipelines/incubation.md` 未建——`incubation` task 暂由执行者参照 `card-batch-design.md` 精神即兴，完成后须将过程沉淀为该流水线
+- `pipelines/incubation.md` **已建**（2026-08-22 首版沉淀，无实测）——执行首个真实 `incubation` run 后须修订；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
 - `skeleton/` 三块为空——从真实设计复盘中生长，禁止批量编造
-- 双轨检索（BM25+向量）未建——记忆流当前仅时间倒序追加
+- 双轨检索：字面轨**已建**（`harness_recall` BM25 段落检索）；向量轨**未建**——接 DSH mnemon 记忆空间（不自建 embedding）
 
 ## 5. 版本纪律
 
