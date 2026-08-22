@@ -35,8 +35,9 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 2. `$HARNESS/HARNESS.md`（总纲与白盒五原理）
 3. `$HARNESS/memory/narrative-chain.md` 最近 3 条（记忆流：上次从哪出发）
 4. `$HARNESS/packs/<品类>/PACK.md`（原子编排与品类判据）
-5. 流水线文件（阶段与原子清单）
-6. 流水线当前阶段指定的原子文件 `$HARNESS/atoms/*.md`、判据文件 `$HARNESS/verdicts/*.md`
+5. `$HARNESS/skeleton/_INDEX.md` + 相关块条目（知识层挂载：机制→效果/玩家→体验/我们信什么）
+6. 流水线文件（阶段与原子清单）
+7. 流水线当前阶段指定的原子文件 `$HARNESS/atoms/*.md`、判据文件 `$HARNESS/verdicts/*.md`
 
 **明确不读**（上下文腐烂治理）：
 - `runs/` 下其他任务的存档（除非当前 task 明确引用）
@@ -68,7 +69,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 ## 4. 骨架缺口登记（执行中遇到即记录）
 
 - `pipelines/incubation.md` **已建**（2026-08-22 首版沉淀，无实测）——执行首个真实 `incubation` run 后须修订；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
-- `skeleton/` 三块为空——生长来源 = **真实项目复盘 或 外部输入**（书/文章/讲座，须带来源 + 用户圈选确认）；继续禁止无来源编造
+- `skeleton/` 已有 4 条（game-mechanics ×1 / fictional-player ×3；design-philosophy 待生长）——生长来源 = **真实项目复盘 或 外部输入**（书/文章/讲座，须带来源 + 用户圈选确认）；继续禁止无来源编造；条目清单见 `skeleton/_INDEX.md`
 - `pipelines/knowledge-sinking.md` **未建**——外部输入沉淀模式（来源提取→拆解→审计→用户圈选→写入）已立规范（见进度文档 §5 与 E 组），首篇输入试跑后沉淀为流水线
 - 双轨检索：字面轨**已建**（`harness_recall` BM25 段落检索）；向量轨**未建**——接 DSH mnemon 记忆空间（不自建 embedding）
 - 度量闭环**无真实数据**：评分趋势 0 条 / 原子验证 0/3 / 判据有效性无真实 run 行——机制全就位，只欠真实 run 点亮（待办 A-01）
