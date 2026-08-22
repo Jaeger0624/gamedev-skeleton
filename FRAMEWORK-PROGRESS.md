@@ -1,7 +1,7 @@
 # 框架进度文档（GameDev Harness）
 
 > **定位**：gamedev-harness（方法体系，`~/.gamedev-harness`）+ gamedev-harness-dashboard（DSH 适配插件）的**总进度与项目待办**追踪。
-> **基准**：视频 63 条观点（见 `视频观点提取-为什么游戏设计师需要搭建自己的harness.md`）+ 2026-08-23 现状快照。
+> **基准**：视频 63 条观点（见 `materials/视频观点提取-为什么游戏设计师需要搭建自己的harness.md`）+ 2026-08-23 现状快照。
 > **三处联动**：本文件（总进度/待办）↔ `AGENTS.md` §4（骨架缺口登记，只记结构缺口）↔ `gamedev-harness-dashboard/ROADMAP.md`（插件功能 backlog）。
 
 ---
