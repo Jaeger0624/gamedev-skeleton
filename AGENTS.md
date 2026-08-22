@@ -61,6 +61,9 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 - `pipelines/incubation.md` **已建**（2026-08-22 首版沉淀，无实测）——执行首个真实 `incubation` run 后须修订；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
 - `skeleton/` 三块为空——从真实设计复盘中生长，禁止批量编造
 - 双轨检索：字面轨**已建**（`harness_recall` BM25 段落检索）；向量轨**未建**——接 DSH mnemon 记忆空间（不自建 embedding）
+- 度量闭环**无真实数据**：评分趋势 0 条 / 原子验证 0/3 / 判据有效性无真实 run 行——机制全就位，只欠真实 run 点亮（待办 A-01）
+- `L2.3` 核心/设计 agent 分工**未建**；task 机制半成品（工具分级/用户画像/共识 top3 自动注入/原子池按 task 装配未做）
+- **视频符合度审查**（2026-08-23，63 条对照）：结构层符合、内容层与数据层未达标（6 项）——完整审查与项目待办见 [`FRAMEWORK-PROGRESS.md`](./FRAMEWORK-PROGRESS.md)
 
 ## 5. 版本纪律
 
