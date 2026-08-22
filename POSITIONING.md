@@ -2,7 +2,7 @@
 
 > **本文件是框架开发项目的定位权威文档**：回答"这是什么项目、为谁、怎么生长、边界在哪"。
 > 保持**稳定**；内容变更须经用户拍板，并按 `AGENTS.md` §5 版本纪律记录。
-> 关联文档：`AGENTS.md`（运行协议）｜ `FRAMEWORK-PROGRESS.md`（进度/待办）｜ `READING-PROTOCOL.md`（读书执行手册）｜ `~/.gamedev-harness/HARNESS.md`（方法体系总纲）｜ `gamedev-harness-dashboard/ADAPTER.md`（插件契约）。
+> 对外门面见 [`README.md`](./README.md)（陌生人入口）；关联：`AGENTS.md`（运行协议）｜ `FRAMEWORK-PROGRESS.md`（进度/待办）｜ `READING-PROTOCOL.md`（读书执行手册）｜ `~/.gamedev-harness/HARNESS.md`（方法体系总纲）｜ `gamedev-harness-dashboard/ADAPTER.md`（插件契约）。
 
 ---
 
@@ -54,10 +54,11 @@
 ## 7. 文档关系
 
 ```
-POSITIONING（定位·纲领，本文档）
-  ├─ AGENTS.md            运行协议：task 检测 / 注入规则 / 义务条款 / 版本纪律
-  ├─ FRAMEWORK-PROGRESS   进度·待办·决策记录（A-H 组）
-  ├─ READING-PROTOCOL     读书学习方法执行手册
-  ├─ HARNESS.md           方法体系总纲（骨架内：白盒五原理/目录职责）
-  └─ ADAPTER.md           插件契约（两个产品、契约协同）
+README（对外门面：这是什么/怎么用/快速开始）
+  └─ POSITIONING（定位·纲领·内部权威，本文档）
+        ├─ AGENTS.md            运行协议：task 检测 / 注入规则 / 义务条款 / 版本纪律
+        ├─ FRAMEWORK-PROGRESS   进度·待办·决策记录（A-H 组）
+        ├─ READING-PROTOCOL     读书学习方法执行手册
+        ├─ HARNESS.md           方法体系总纲（骨架内：白盒五原理/目录职责）
+        └─ ADAPTER.md           插件契约（两个产品、契约协同）
 ```
