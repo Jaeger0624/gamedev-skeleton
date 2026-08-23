@@ -24,6 +24,7 @@ GameDev-Skeleton/                ← 本仓库：框架的开发家（协议/进
 ├── README.md                     ← 你正在看
 ├── POSITIONING.md                ← 项目定位与边界（内部权威）
 ├── FRAMEWORK-MIND.md             ← 心智基线：架构精神/实体矩阵/红线（启动必读）
+├── FRAMEWORK-AUDIT.md            ← 框架审计手册：周期性体检（漂移/漏洞/优化，触发时读）
 ├── FRAMEWORK-PROGRESS.md         ← 进度与待办（A-H 组）
 ├── READING-PROTOCOL.md           ← "读书"学习方法执行手册
 ├── runs/                         ← 框架历史档案（可追溯的实验与演化记录）

@@ -58,6 +58,7 @@
 README（对外门面：这是什么/怎么用/快速开始）
   └─ POSITIONING（定位·纲领·内部权威，本文档）
         ├─ FRAMEWORK-MIND   心智基线（架构精神/实体矩阵/红线——启动必读，AGENTS §0.0）
+        ├─ FRAMEWORK-AUDIT  框架审计手册（周期性体检：五维度/触发/产出处理——触发时读）
         ├─ AGENTS.md            运行协议：task 检测 / 注入规则 / 义务条款 / 版本纪律
         ├─ FRAMEWORK-PROGRESS   进度·待办·决策记录（A-H 组）
         ├─ READING-PROTOCOL     读书学习方法执行手册
