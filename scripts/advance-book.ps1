@@ -18,7 +18,8 @@ param(
   [string]$Cursor = '',
   [int]$Rounds = -1,
   [int]$Accepted = -1,
-  [int]$Deferred = -1
+  [int]$Deferred = -1,
+  [string]$YieldFile = ''
 )
 $ErrorActionPreference = 'Stop'
 $jsonPath = Join-Path $BookDir 'book.json'
@@ -54,6 +55,28 @@ foreach ($s in $book.sections) {
   }
 }
 if ($hits -eq 0) { throw "no sections matched ids: $Ids" }
+
+# optional per-section yield backfill from a UTF-8 JSON data file:
+# { "049": { "atoms": [...], "verdicts": [...], "skeleton": [...], "insights": [...], "rejects": [...] }, ... }
+# empty arrays are skipped (existing empty arrays are preserved)
+if ($YieldFile -ne '') {
+  if (-not (Test-Path $YieldFile)) { throw "yield file not found: $YieldFile" }
+  $yield = [System.IO.File]::ReadAllText($YieldFile) | ConvertFrom-Json
+  foreach ($s in $book.sections) {
+    if ($idSet.ContainsKey($s.id)) {
+      $y = $yield.PSObject.Properties[$s.id]
+      if ($null -ne $y) {
+        foreach ($f in @('atoms', 'verdicts', 'skeleton', 'insights', 'rejects')) {
+          $val = $y.Value.PSObject.Properties[$f]
+          if ($null -ne $val -and $null -ne $val.Value -and @($val.Value).Count -gt 0) {
+            $s.yield.$f = @($val.Value)
+          }
+        }
+      }
+    }
+  }
+}
+
 if ($Cursor -ne '') { $book.cursor = @($Cursor) }
 if ($Rounds -ge 0) { $book.summary.rounds = $Rounds }
 if ($Accepted -ge 0) { $book.summary.accepted = $Accepted }
