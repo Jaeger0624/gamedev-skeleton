@@ -86,7 +86,7 @@ discovered ──start──▶ reading ──finish──▶ finished
 - [ ] `book.json`：节状态 + readAt + cursor + summary——**必须用 `scripts/advance-book.ps1` 原子推进，禁止手改**（手改 JSON 出过事故）
 - [ ] `sources/<slug>.md`：沉淀产物追加
 - [ ] **书地图回写**：交叉点判定更新（重叠 ✓ 已吸收 / 新信号 ✓ 已沉淀 / 冲突 ✗ 未发现 / 待定），附阅读进度
-- [ ] 叙事链回写一条（tag 书+节；批量轮 tag 主题段）
+- [ ] 叙事链回写一条（tag 书+节；批量轮 tag 主题段）——带「出发自」字段；主题段读完时提议「归档候选」（主题终了+无活跃引用，经用户确认后执行）
 
 ### 3.4 并行读模式（subagent 多代理，2026-08-23 首验）
 

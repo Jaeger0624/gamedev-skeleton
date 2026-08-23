@@ -33,7 +33,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 **`unit-design` / `design-review` 必读**（按序）：
 1. 本文件（运行协议）
 2. `$HARNESS/HARNESS.md`（总纲与白盒五原理）
-3. `$HARNESS/memory/narrative-chain.md` 最近 3 条（记忆流：上次从哪出发）
+3. 叙事链最近 3 条（**按当前作用域**：项目 run = 项目链 `<项目目录>/narrative-chain.md` + 全局链 `$HARNESS/memory/narrative-chain/_MAIN.md`；框架/读书/跨项目 = 全局链；归档区默认不注入）
 4. `$HARNESS/packs/<品类>/PACK.md`（原子编排与品类判据）
 5. `$HARNESS/skeleton/_INDEX.md` + 相关块条目（知识层挂载：机制→效果/玩家→体验/我们信什么）
 6. 流水线文件（阶段与原子清单）
@@ -44,7 +44,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 - 与当前设计对象无关的品类包
 - 环境原况、磁盘状态等与"当下设计判断"无关的噪音
 
-**`incubation` 必读**：本文件、HARNESS.md、narrative-chain.md 最近 3 条。原子池按需发散，不定清单。
+**`incubation` 必读**：本文件、HARNESS.md、当前作用域叙事链最近 3 条（项目 run 读项目链+全局链；框架/读书读全局链）。原子池按需发散，不定清单。
 
 **`reading` 必读**（每节阅读轮）：①`books/<slug>/book.json` 摘要（元信息/状态/游标/未读清单）②最近 N 轮 `读书日志.md` 摘要（上次读到哪、怎么看的）③当前节正文（只带这一节）④相关现有判据/原子对照（查重）。执行手册见 [`READING-PROTOCOL.md`](./READING-PROTOCOL.md)。
 **`reading` 明确不读**：全书全文、其他书、与本书无关的框架内容与环境噪音。
@@ -55,16 +55,16 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 1. **检查点义务**：流水线每完成一个阶段，产出文件写入 `runs/<YYYY-MM-DD>-<任务名>/`，文件名对齐阶段编号（`00-fact-sheet` … `05-review`）。禁止跳阶段、禁止合并产出。
 2. **判据挂载义务**：设计初稿中每个关键决策必须挂至少一条 `$HARNESS/verdicts/` 判据作为依据；无判据可挂时，在回顾阶段提出新判据候选。
 3. **回写义务**（阶段 5 回顾自检时执行）：
-   - 原子使用记录追加到 `$HARNESS/memory/narrative-chain.md` 对应条目的"原子使用明细"段
+   - 原子使用记录追加到对应叙事链条目（当前作用域：`$HARNESS/memory/narrative-chain/_MAIN.md` 或项目链）的"原子使用明细"段
    - 判据有效性记录追加到 `$HARNESS/verdicts/<对应判据>.md`
-   - 叙事摘要追加到 `$HARNESS/memory/narrative-chain.md`（格式见该文件头部）
+   - 叙事摘要追加到当前作用域叙事链（`$HARNESS/memory/narrative-chain/_MAIN.md` 或项目链；格式见该文件头部）——**每条须带「出发自」字段**（可空=全新主题起点；推翻旧决策→指向被推翻条目，对方标注 ⏳已取代）；检查主题段是否终了，终了则提议「归档候选」（主题终了+无活跃引用）→ 用户确认后移入 `archive/`
 4. **事实义务**：设计对象的事实信息（现有机制/卡池/社区共识）必须先检索核实，禁止臆测。检索结论入 `00-fact-sheet.md` 并注明来源。
 5. **减法义务**：终稿前必须逐效果自问"删掉它快乐会不会塌"，减法记录入终稿。
 6. **开发义务**（`harness-dev` 适用；设计流水线/判据挂载/减法义务不适用）：
    - 版本纪律：每次变更提交（conventional commits）；全局骨架每次回写后提交
    - ADR 记录：关键决策/翻案/架构取舍 → `$HARNESS/decisions/<日期>-<主题>.md`（格式见 _INDEX.md 头部）
    - 契约维护：骨架格式/流程文件的变化 → 同步更新适配契约（插件 `ADAPTER.md` 的版本联动节）
-   - 叙事链回写：决策摘要/长出的东西 → `$HARNESS/memory/narrative-chain.md`（append-only）
+   - 叙事链回写：决策摘要/长出的东西 → 当前作用域叙事链（`$HARNESS/memory/narrative-chain/_MAIN.md` 或项目链；append-only）
 
 ## 4. 骨架缺口登记（执行中遇到即记录）
 
