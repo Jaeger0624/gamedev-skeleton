@@ -87,6 +87,9 @@ discovered ──start──▶ reading ──finish──▶ finished
 ### 3.3 轮后回写清单（每轮必做，顺序执行：先权威源、后派生、机检终审）
 
 > **结算真相源（2026-08-24 定案，修复多源漂移）**：每轮"产出了什么"的**唯一真相源** = `轮次存档/<日期>-轮N.settled.json`（结构化 JSON：分节 yield + 候选四维预检结论 + summary + cursor）。读书日志 / 叙事链 / 书地图 / sources 均为**派生层**；book.json 的 yield 由 settled.json 经 advance-book.ps1 写入。**结构化抄写只发生一次**（L2 生成 settled.json 时），此后全部由机检兜底——本次漏记（038/轮10 三条：日志有、book.json 无）即"多源各自抄写"式漂移，禁止回归此模式。
+> **白盒要求（2026-08-24 用户强调）**：回看时必须能回答①**来路**（这条从哪来：轮/节/L1 报告/L2 衍生）②**环节定位**（在哪个环节断的）。因此：
+> - `yield.insights` 中**候选标记为必含项**（settled.json candidates 与 insights 候选条目一一对应，禁止"内容有、标记无"——本次 4 条漏标即此温床）；
+> - 补录/异常修复必须带**【补录标识 + 日期 + 断点环节】**（如「【轮4 补记 2026-08-24，断点=人工抄写 yield】」），可回看时定位；
 
 - [ ] ① L3 圈选结果 → L2 生成 `settled.json`（分节 yield 数组、候选预检合格/降级结论、summary、cursor）——唯一一次结构化抄写，生成后人工过目一遍
 - [ ] ② `scripts/advance-book.ps1 -YieldFile <settled.json>` 推进 book.json（节状态 + readAt + cursor + summary + yield；**禁止手改**，手改 JSON 出过事故）
