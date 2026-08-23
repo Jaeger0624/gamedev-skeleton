@@ -1,0 +1,7 @@
+docs\README.md	project-docs-README.md
+docs\AI工作流.md	project-docs-AIHELP.md
+docs\项目进度.md	project-docs-PROGRESS.md
+docs\世界观与故事\世界观与故事总览.md	project-docs-NARRATIVE.md
+docs\玩法设计\玩法设计总览.md	project-docs-GAMEPLAY.md
+docs\美术表现\视听方向.md	project-docs-AV.md
+docs\版本归档\版本记录.md	project-docs-CHANGELOG.md
