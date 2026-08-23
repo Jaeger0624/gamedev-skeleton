@@ -18,12 +18,26 @@
 # ============================================================
 param(
   [Parameter(Mandatory = $true)][string]$BookDir,
-  [Parameter(Mandatory = $true)][string]$SettledFile
+  [Parameter(Mandatory = $true)][string]$SettledFile,
+  [string]$Harness = ''
 )
 $ErrorActionPreference = 'Stop'
+if ($Harness -eq '') { $Harness = Join-Path $env:USERPROFILE '.gamedev-harness' }
 $jsonPath = Join-Path $BookDir 'book.json'
 if (-not (Test-Path $jsonPath)) { throw "book.json not found: $jsonPath" }
 if (-not (Test-Path $SettledFile)) { throw "settled file not found: $SettledFile" }
+
+# G-20 (2026-08-24): settled yield entity slug -> harness file system lookup.
+# Supports plain slug ('decision-scope') and prefixed slug ('game-mechanics/balance').
+function Get-HarnessFile([string]$root, [string]$slug) {
+  $cand = Join-Path $root ($slug -replace '/', '\')
+  if (Test-Path $cand) { return $cand }
+  $base = [System.IO.Path]::GetFileNameWithoutExtension($slug)
+  if ($base -eq '') { return '' }
+  $hits = Get-ChildItem -Path $root -Filter "$base.md" -Recurse -ErrorAction SilentlyContinue
+  foreach ($h in $hits) { if ($h.BaseName -eq $base) { return $h.FullName } }
+  return ''
+}
 
 function Normalize-List($val) {
   if ($null -eq $val) { return @() }
@@ -84,6 +98,42 @@ if ($null -ne $settledRaw.summary) {
 if ($null -ne $settledRaw.cursor -and @($settledRaw.cursor).Count -gt 0) {
   $wc = ($book.cursor -join ','); $sc = (@($settledRaw.cursor) -join ',')
   if ($wc -ne $sc) { Write-Output ("FAIL cursor: book={0} settled={1}" -f $wc, $sc); $fail++ }
+}
+
+# 4. sink check (G-20, 2026-08-24): every atoms/verdicts/skeleton slug in settled
+#    yield must exist as a real file in the harness (defense against "wrote the
+#    field but never created the library file" drift - round 13 case).
+$sinkFail = 0
+$sinkChecked = 0
+if (Test-Path $Harness) {
+  $layerRoots = @{
+    atoms    = (Join-Path $Harness 'atoms\skills')
+    verdicts = (Join-Path $Harness 'verdicts')
+    skeleton = (Join-Path $Harness 'skeleton')
+  }
+  foreach ($entry in $yields.PSObject.Properties) {
+    foreach ($f in @('atoms', 'verdicts', 'skeleton')) {
+      $prop = $entry.Value.PSObject.Properties[$f]
+      if ($null -eq $prop -or $null -eq $prop.Value) { continue }
+      foreach ($slug in @($prop.Value)) {
+        $s = [string]$slug
+        if ($s -eq '') { continue }
+        $root = $layerRoots[$f]
+        if (-not (Test-Path $root)) {
+          Write-Output ("FAIL sink-root-missing: {0}" -f $root); $sinkFail++; continue
+        }
+        $sinkChecked++
+        $path = Get-HarnessFile $root $s
+        if ($path -eq '') {
+          Write-Output ("FAIL sink {0}.{1}: slug [{2}] missing in harness ({3})" -f $entry.Name, $f, $s, $root)
+          $sinkFail++
+        }
+      }
+    }
+  }
+  if ($sinkFail -gt 0) { $fail += $sinkFail } else { Write-Output ("SINK OK - {0} settled entities found in harness" -f $sinkChecked) }
+} else {
+  Write-Output ("WARN harness dir not found: {0} (sink check skipped)" -f $Harness)
 }
 
 if ($fail -gt 0) {

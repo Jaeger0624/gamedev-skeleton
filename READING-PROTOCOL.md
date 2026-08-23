@@ -98,7 +98,7 @@ discovered ──start──▶ reading ──finish──▶ finished
 
 - [ ] ① L3 圈选结果 → L2 生成 `settled.json`（分节 yield 数组、候选预检合格/降级结论、summary、cursor）——唯一一次结构化抄写，生成后人工过目一遍
 - [ ] ② `scripts/advance-book.ps1 -YieldFile <settled.json>` 推进 book.json（节状态 + readAt + cursor + summary + yield；**禁止手改**，手改 JSON 出过事故）
-- [ ] ③ `scripts/check-book-consistency.ps1` **校验门**：book.json vs settled.json 逐字段一致——不一致=本轮未结算（修复后重跑）；**PASS 前不得宣告轮完成**
+- [ ] ③ `scripts/check-book-consistency.ps1` **校验门**：book.json vs settled.json 逐字段一致 + **落库检查**（settled yield 的 atoms/verdicts/skeleton slug 须全部真实存在于全局骨架文件系统——G-20，2026-08-24；原子候选仅记录不建文件，登记于 insights，不进 atoms 数组）——不一致=本轮未结算（修复后重跑）；**PASS 前不得宣告轮完成**
 - [ ] ④ 读书日志追加本轮（全量入账；候选/沉淀计数**照 settled.json 数**；负结果也入账）
 - [ ] ⑤ 叙事链回写一条（tag 书+节；批量轮 tag 主题段）——带「出发自」字段；计数引用 settled；主题段读完时提议「归档候选」（主题终了+无活跃引用，经用户确认后执行）
 - [ ] ⑥ 书地图回写：交叉点判定更新（重叠 ✓ 已吸收 / 新信号 ✓ 已沉淀 / 冲突 ✗ 未发现 / 待定）+ 阅读进度（计数照 settled）
