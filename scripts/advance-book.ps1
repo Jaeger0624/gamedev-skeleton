@@ -62,9 +62,17 @@ if ($hits -eq 0) { throw "no sections matched ids: $Ids" }
 if ($YieldFile -ne '') {
   if (-not (Test-Path $YieldFile)) { throw "yield file not found: $YieldFile" }
   $yield = [System.IO.File]::ReadAllText($YieldFile) | ConvertFrom-Json
+  # two shapes: settled manifest { round, checks, yield: {id: {...}}, summary, cursor }
+  #            or bare yield map { id: {...}, ... }
+  $sections = $yield
+  $cursorSrc = $yield
+  if ($null -ne $yield.PSObject.Properties['yield']) {
+    $sections = $yield.yield
+    $cursorSrc = $yield
+  }
   foreach ($s in $book.sections) {
     if ($idSet.ContainsKey($s.id)) {
-      $y = $yield.PSObject.Properties[$s.id]
+      $y = $sections.PSObject.Properties[$s.id]
       if ($null -ne $y) {
         foreach ($f in @('atoms', 'verdicts', 'skeleton', 'insights', 'rejects')) {
           $val = $y.Value.PSObject.Properties[$f]
@@ -74,6 +82,16 @@ if ($YieldFile -ne '') {
         }
       }
     }
+  }
+  # summary / cursor from settled file when not explicitly provided (2026-08-24:
+  # settled.json = single source of truth, so its summary/cursor drive book.json too)
+  if ($Cursor -eq '' -and $null -ne $cursorSrc.cursor -and @($cursorSrc.cursor).Count -gt 0) {
+    $book.cursor = @(@($cursorSrc.cursor) | ForEach-Object { [string]$_ })
+  }
+  if ($null -ne $cursorSrc.summary) {
+    if ($Rounds -lt 0 -and $null -ne $cursorSrc.summary.PSObject.Properties['rounds']) { $Rounds = [int]$cursorSrc.summary.rounds }
+    if ($Accepted -lt 0 -and $null -ne $cursorSrc.summary.PSObject.Properties['accepted']) { $Accepted = [int]$cursorSrc.summary.accepted }
+    if ($Deferred -lt 0 -and $null -ne $cursorSrc.summary.PSObject.Properties['deferred']) { $Deferred = [int]$cursorSrc.summary.deferred }
   }
 }
 
