@@ -57,9 +57,12 @@
 ```
 README（对外门面：这是什么/怎么用/快速开始）
   └─ POSITIONING（定位·纲领·内部权威，本文档）
+        ├─ FRAMEWORK-MIND   心智基线（架构精神/实体矩阵/红线——启动必读，AGENTS §0.0）
         ├─ AGENTS.md            运行协议：task 检测 / 注入规则 / 义务条款 / 版本纪律
         ├─ FRAMEWORK-PROGRESS   进度·待办·决策记录（A-H 组）
         ├─ READING-PROTOCOL     读书学习方法执行手册
         ├─ HARNESS.md           方法体系总纲（骨架内：白盒五原理/目录职责）
         └─ ADAPTER.md           插件契约（两个产品、契约协同）
 ```
+
+> **结构图同步契约（2026-08-24 立）**：新增/改名任何**顶层文档**（本仓库根或 $HARNESS 根），必须同步更新三处：①本图（POSITIONING §7）②README 结构图 ③HARNESS.md 目录职责表——违反=审计红点（白盒=结构说明覆盖实际）。
