@@ -97,3 +97,20 @@
 | P7 | §3.12 补产物约定 | 已是根本（统一载体=run 级 `flow-observations.md`，阶段产出只引用） | **执行** |
 
 **红线 8 自证（本表即首次执行）**：P2 原案（全量注入）已在上一轮被架构回审驳回；P3′（新流水线=复制）被"膨胀判据"驳回；P5（文案级=增量）被 O8 用户指正升级；本轮 P1/P4/P6 三个增项被根本化——"增量修补是默认嫌疑"不是空谈：**五轮里四轮是靠着"先问根本"才避免了膨胀或错误方向**。回审方法论教训（观察需复核不可转述——O8 漏判）一并登记在 §四 O8 行。
+
+## 七、实施与统一审记录（2026-08-25，三路子代理并行 + 亲审）
+
+**实施**（用户圈选"全部执行"+ 建议善用子代理；三路并行后统一审）：
+- A 流（插件批）：`pipeline.ts`（extractFenceBlock/parseVerdictRef/verdictExists/判据校验+〔候选〕标注/atoms core+发散池/偏好注入/run_checkpoint writebackCheck）+ `writer.ts`（§1 放宽/§3.3 三档/§3.12 汇总约定/initProject preferences）+ `smoke-phase1.mjs`（夹具新格式 + 11 新断言）——build ✓、**smoke-phase1 32/32**、热重载 ✓；
+- B 流（PACK 结构化）：story/puzzle/strategy-roguelike/_TEMPLATE 四包迁移（条目平账：13/5/4，atoms 5/4/4；story 单元设计适配节五条；_TEMPLATE 格式契约节）；
+- C 流（流水线/协议）：card-batch-design 中立化（定位与边界前置/品类基线词/去卡词/储君案例标品类实例）+ 星尘协议 §1/§3.3/§3.12 + _FORMAT 注记。
+
+**统一审（亲验，不转述）**：
+- ✅ 规格对照：真实 PACK 数据块用生产正则复验——story 13/13、puzzle 5/5、rogue 4/4、atoms 5/4/4、0 非法行（固化入 smoke-phase2 第 6 节，**23/23 PASS**）；
+- ✅ 机制回归：smoke-phase1 亲跑 EXIT=0（32/32）；smoke-phase2 亲跑 EXIT=0；阶段 id/产出文件名未变（检查点工具前缀兼容）；
+- ✅ 红线 8 形状核查：数据块替代散文（根本）；单骨架+适配层（防膨胀）；数据源正式化（preferences 字段）；检查点级义务=检查点判定项（机制非文案）；
+- 🔧 统一审修复 3 处：①story PACK 流水线清单双行（"可参考"旧行未删→已删）②card-batch 标题仍"系列卡牌批量设计"→"单元设计（通用骨架）"+「卡牌产出固定格式」→「单元产出固定格式（卡牌样例，品类以 PACK 适配节为准）」③ADAPTER 版本联动补 2026-08-25 条目；
+- 📌 遗漏核查（O1→P1″ / O2,O3,O5,O6,O9→P3″ / O4→P2′ / O7→P4′ / O8→P5′ / 机制首秀→P7）：全部对应；
+- 📌 遗留：puzzle「mental-simulation 必定注入」注记与表格自相矛盾（B 流观察未改义——留该品类真实 run 验证口径）；B-2/B-3 判据候选继续待验证；M4 对账随 A-01。
+
+**批次提交**：插件仓 feature/framework-upgrade（src×3+smoke+ADAPTER）｜框架仓 feature/framework-upgrade（SPEC+回审文档+smoke-phase2）｜$HARNESS master（packs×4+pipelines×2+decisions+narrative）。

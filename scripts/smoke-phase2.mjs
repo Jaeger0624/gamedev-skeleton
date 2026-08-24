@@ -105,4 +105,32 @@ expect('shouldBindPreset：用户显式选择其他预设 → 尊重不绑定', 
 expect('shouldBindPreset：非 harness 项目 → 不绑定', shouldBindPreset('standard', 'standard', false, true) === false)
 expect('shouldBindPreset：已有内容（非 blank）→ 不绑定', shouldBindPreset('standard', 'standard', true, false) === false)
 
+// ── 6. 真实 PACK 数据块规格符合（P1″ 契约回归，规格见 docs/PACK-STRUCTURE-SPEC.md）──
+function extractFenceBlock(text, lang) {
+  const lines = []
+  const open = new RegExp('^```[\\w-]*' + lang + '\\s*$', 'm').exec(text)
+  if (open === null) return lines
+  const after = text.slice(open.index + open[0].length)
+  const close = after.match(/^```\s*$/m)
+  if (close === null) return lines
+  for (const raw of after.slice(0, close.index).split(/\r?\n/)) {
+    const line = raw.trim()
+    if (line === '' || line.startsWith('#')) continue
+    lines.push(line)
+  }
+  return lines
+}
+const packsRoot = join(os.homedir(), '.gamedev-harness', 'packs')
+const expectedVerdicts = { story: 13, puzzle: 5, 'strategy-roguelike': 4 }
+let packOk = true
+for (const [pack, expected] of Object.entries(expectedVerdicts)) {
+  const text = readFileSync(join(packsRoot, pack, 'PACK.md'), 'utf8')
+  const v = extractFenceBlock(text, 'verdicts')
+  const a = extractFenceBlock(text, 'atoms')
+  const bad = v.filter(l => !/^[a-z0-9][a-z0-9-]*@(formal|candidate)$/.test(l))
+  console.log(`  [pack] ${pack}: verdicts=${v.length}（期望 ${expected}） atomsRows=${a.length} bad=${bad.length}`)
+  if (v.length !== expected || a.length === 0 || bad.length > 0) packOk = false
+}
+expect('真实 PACK 数据块：三包 verdicts 条目数=规格 + atoms 块非空 + 无非法行', packOk)
+
 console.log(process.exitCode === 1 ? '\nsmoke-phase2 FAILED' : '\nsmoke-phase2 all PASS')
