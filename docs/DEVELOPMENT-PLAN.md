@@ -27,19 +27,19 @@
   e. **骨架注入按需裁剪**：PACK 引用优先（[pack]）+ 每块上限 4 + 总量上限 14（[block]）——修复"全量 63 条=上下文过载+术语榜样"（注入即起点治理）。
 - **产出/验收**：冒烟脚本 `scripts/smoke-phase1.mjs` **19/19 PASS**（f527e7c + 4c77136，feature/framework-upgrade 分支）；ADAPTER 契约同步（2026-08-24 版本联动条）。
 
-## 阶段 2 · M3′ 会话启动链（继承链第一环）✅ 2026-08-24 完成
+## 阶段 2 · M3′ 会话启动链（继承链第一环）✅ 2026-08-24 完成（同日修订 A2′）
 
 - **目标**：新会话"进得来、记得读协议"——不靠用户记得选预设。
 - **阶段 0 判定（核实结论）**：DSH **支持多协议注入——分支 A 成立**。`@deepseek-ai/dsh-agent-instructions`（active）`instructionFileCandidates` 可配置（默认 `["AGENTS.md","CLAUDE.md"]`），按 项目根→cwd 目录链逐目录发现、多段注入、带字节预算与截断；默认预设 `standard` 经 standing scope 挂载该插件 → AGENTS.md 早已对所有会话自动注入（框架工作区实证：router-standard 会话亦注入，无需 harness-project 预设）。**缺口唯一**：候选清单未含 `HARNESS-PROTOCOL.md`——星尘叙事者项目默认会话只注入 Maker 托管 AGENTS.md（55.4KB 纯引擎政策）+ CLAUDE.md（81B），设计协议完全靠自发现。
-- **分支 B**（preset 契约化）：**未选**。分支 A 成立后不再必要；harness-project 预设保留为"选对时"条件解（persona 铁律+工具面），与 A2 注入（无条件解）互补（见 ADR）。
-- **实施（A2 治本；用户拍板：A2 + maxBytes 98304 + 预设留用户目录/仓库只登记文档）**：
-  a. 新预设 `~/.dsh/.agent-presets/harness-standard`（系统 standard plane 副本 + `agent-instructions` 行补候选 + `maxBytes: 98304`；preset.yml `order: 2`）；
-  b. `harness-project` 预设同步同差异行（选中路径亦注入）；
-  c. profile `cordis.yml`：`agent-presets.default: standard → harness-standard`（候选=文件名清单：无该文件的项目行为不变）；
-  d. 冒烟 `scripts/smoke-phase2.mjs` **16/16 PASS**（框架工作区回归 / 修复前后对比=缺口实锤 / 截断保末段语义 / 预设 loader 同构校验）；
-  e. ADR `2026-08-24-m3-session-startup-chain.md`。
-- **已知限制**：①`router-standard` 等实验预设未含差异行（红线 7：未点名不普适化——遇用再评）；②DSH 升级后 harness-standard 副本可能落后系统 standard → 升级时重跑 smoke + diff 对账；③FRAMEWORK-MIND.md 保持"协议内读"不注入（完整段/不得跳设计不变）；④`cordis.yml` 改动**重启 DSH 后对新会话生效**。
-- **验收**：模拟 = smoke-phase2 16/16；用户首次实测 = 重启 DSH 后在星尘叙事者开新会话（默认预设、不选 harness-project），工作区指令应含 `HARNESS-PROTOCOL.md` 段。
+- **分支 B**（preset 契约化）：**未选**。分支 A 成立后不再必要；harness-project 预设保留为"选对时"条件解（persona 铁律+工具面），与自动绑定（无条件解）互补（见 ADR）。
+- **实施（A2′ 工作区感知自动绑定；历经用户纠偏：A2 全局默认方案被否——框架预设不该污染非框架项目默认）**：
+  a. `harness-project` 预设 `agent-instructions` 行补候选 `[AGENTS.md, CLAUDE.md, HARNESS-PROTOCOL.md]` + `maxBytes: 98304`（选中路径与自动绑定路径共用）；
+  b. **host 钩子**（插件 `src/host/session-bootstrap.ts`）：`agent/created` → 会话 cwd 项目根含 `.gamedev-harness.json`（接入标记）+ 当前预设=部署默认 + blank 窗口 → `recompose('harness-project')` + 写 `agent-preset/selected` 事件（模型可见⟺日志诚实，同宿主 RPC 写法）；用户显式选择的其他预设一律尊重；
+  c. **默认预设保持 `standard`**（平台中立，未接入项目零感知）；A2 方案的 `harness-standard` 副本预设废弃删除；
+  d. 冒烟 `scripts/smoke-phase2.mjs` **22/22 PASS**（框架工作区回归 / 修复前后对比=缺口实锤 / 截断保末段语义 / 默认中立+harness-project 候选 / 绑定纯逻辑：标记判定+绑定条件矩阵）；
+  e. ADR `2026-08-24-m3-session-startup-chain.md`（含同日修订注记）。
+- **已知限制**：①`router-standard` 等实验预设显式选中时保持原样（红线 7：未点名不普适化——遇用再评）；②钩子只作用于新会话创建（`agent/created`），已有会话不迁移；③DSH 升级后 harness-project 组合若失配 → 重跑 smoke 对账；④FRAMEWORK-MIND.md 保持"协议内读"不注入（完整段/不得跳设计不变）；⑤插件已热重载 + 运行中默认本就 `standard` → **无需重启即生效**。
+- **验收**：模拟 = smoke-phase2 22/22；用户首次实测 = 在星尘叙事者开新会话（默认预设、不显式选择）——会话自动绑定 harness-project（日志含 `agent-preset/selected` 事件）且工作区指令含 `HARNESS-PROTOCOL.md` 段；非框架项目新会话保持 `standard`、无感。
 
 ## 阶段 3 · 流程生长轨（动态沉淀的制度壳，1-2h 文档）
 
