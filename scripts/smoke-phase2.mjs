@@ -121,7 +121,7 @@ function extractFenceBlock(text, lang) {
   return lines
 }
 const packsRoot = join(os.homedir(), '.gamedev-harness', 'packs')
-const expectedVerdicts = { story: 13, puzzle: 5, 'strategy-roguelike': 4 }
+const expectedVerdicts = { story: 15, puzzle: 5, 'strategy-roguelike': 4 }
 let packOk = true
 for (const [pack, expected] of Object.entries(expectedVerdicts)) {
   const text = readFileSync(join(packsRoot, pack, 'PACK.md'), 'utf8')

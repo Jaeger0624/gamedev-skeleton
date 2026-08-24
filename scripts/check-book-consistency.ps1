@@ -17,12 +17,17 @@
 # }
 # ============================================================
 param(
-  [Parameter(Mandatory = $true)][string]$BookDir,
-  [Parameter(Mandatory = $true)][string]$SettledFile,
-  [string]$Harness = ''
+  [string]$BookDir,
+  [string]$SettledFile,
+  [string]$Harness = '',
+  [switch]$CheckPackAdoption
 )
 $ErrorActionPreference = 'Stop'
 if ($Harness -eq '') { $Harness = Join-Path $env:USERPROFILE '.gamedev-harness' }
+
+# -CheckPackAdoption 模式独立运行收录检查（不需 book/settled）。
+if (-not $CheckPackAdoption) {
+if ($BookDir -eq '' -or $SettledFile -eq '') { throw "BookDir and SettledFile required unless -CheckPackAdoption is set" }
 $jsonPath = Join-Path $BookDir 'book.json'
 if (-not (Test-Path $jsonPath)) { throw "book.json not found: $jsonPath" }
 if (-not (Test-Path $SettledFile)) { throw "settled file not found: $SettledFile" }
@@ -141,4 +146,57 @@ if ($fail -gt 0) {
   exit 1
 }
 Write-Output ("CONSISTENCY OK - book.json matches settled manifest (round {0}, range {1})" -f $settledRaw.round, $settledRaw.range)
+}
+
+# 5. pack adoption reverse check (B级, 2026-08-25): library entities not adopted
+#    by ANY genre pack list -> "待归属" report (INFO only; adoption is a human
+#    judgment - global verdicts may legitimately stay unadopted).
+if ($CheckPackAdoption) {
+  if (-not (Test-Path $Harness)) { Write-Output ("WARN harness dir not found: {0} (adoption check skipped)" -f $Harness); exit 0 }
+  function Get-PackFenceSlugs([string]$text, [string]$lang) {
+    $slugs = @{}
+    $fence = '```'
+    $m = [regex]::Match($text, '(?ms)^' + $fence + $lang + '\s*$' + '(.*?)' + $fence)
+    if (-not $m.Success) { return $slugs }
+    foreach ($line in ($m.Groups[1].Value -split '\r?\n')) {
+      $t = $line.Trim()
+      if ($t -eq '' -or $t.StartsWith('#')) { continue }
+      if ($lang -eq 'verdicts') {
+        if ($t -match '^([a-z0-9][a-z0-9-]*)@(formal|candidate)$') { $slugs[$Matches[1]] = $true }
+      } else {
+        foreach ($part in ($t -split '\|')) {
+          if ($part -match '^(?:core|divergent):(.+)$') {
+            foreach ($s in ($Matches[1] -split ',')) { $s = $s.Trim(); if ($s -ne '') { $slugs[$s] = $true } }
+          }
+        }
+      }
+    }
+    return $slugs
+  }
+  $adopted = @{}
+  $packRoot = Join-Path $Harness 'packs'
+  if (Test-Path $packRoot) {
+    foreach ($dir in (Get-ChildItem $packRoot -Directory)) {
+      if ($dir.Name -eq '_TEMPLATE') { continue }
+      $packFile = Join-Path $dir.FullName 'PACK.md'
+      if (-not (Test-Path $packFile)) { continue }
+      $text = [System.IO.File]::ReadAllText($packFile)
+      foreach ($lang in @('verdicts', 'atoms')) {
+        foreach ($k in (Get-PackFenceSlugs $text $lang).Keys) { $adopted[$k] = $true }
+      }
+    }
+  }
+  # library sets
+  $libV = @{}
+  foreach ($f in (Get-ChildItem (Join-Path $Harness 'verdicts') -Filter '*.md' -ErrorAction SilentlyContinue)) { if ($f.BaseName -ne '_FORMAT') { $libV[$f.BaseName] = $true } }
+  $libA = @{}
+  $skillDir = Join-Path $Harness 'atoms\skills'
+  if (Test-Path $skillDir) { foreach ($f in (Get-ChildItem $skillDir -Filter '*.md')) { $libA[$f.BaseName] = $true } }
+  $unV = @($libV.Keys | Where-Object { -not $adopted.ContainsKey($_) } | Sort-Object)
+  $unA = @($libA.Keys | Where-Object { -not $adopted.ContainsKey($_) } | Sort-Object)
+  foreach ($s in $unV) { Write-Output ("PACK-ADOPTION-VERDICT 未收录: {0}" -f $s) }
+  foreach ($s in $unA) { Write-Output ("PACK-ADOPTION-ATOM 未收录: {0}" -f $s) }
+  Write-Output ("PACK-ADOPTION: {0} 判据 / {1} 原子 未收录于任何品类清单（待归属或全局适用未声明——人工判定，非错误）" -f $unV.Count, $unA.Count)
+  exit 0
+}
 exit 0
