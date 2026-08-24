@@ -83,6 +83,7 @@ dsh plugin --profile web add <path>/gamedev-harness-dashboard
 
 | 文档 | 给谁 | 内容 |
 |---|---|---|
+| [framework-flow.html](./docs/framework-flow.html) | 所有人 | 运作机制流程图（会话启动→task→注入→run→白盒挂载→回写→生长→记忆流） |
 | [POSITIONING.md](./POSITIONING.md) | 项目成员 | 项目定位与边界（权威） |
 | [FRAMEWORK-PROGRESS.md](./FRAMEWORK-PROGRESS.md) | 项目成员 | 进度、待办、决策记录 |
 | [READING-PROTOCOL.md](./READING-PROTOCOL.md) | 阅读者/执行者 | "读书"学习方法手册 |

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "GameDev Harness 运作机制",
+    "quality_profile": "showcase",
+    "output": "docs/framework-flow.html"
+  },
+  "lanes": [
+    { "id": "session", "label": "会话（用户 + agent）" },
+    { "id": "tasking", "label": "任务判定（协议）" },
+    { "id": "lifecycle", "label": "run 生命周期（状态机）" },
+    { "id": "decision", "label": "决策挂载（白盒约束）" },
+    { "id": "memory", "label": "记忆流（来路 / 检索 / 归档）" },
+    { "id": "growth", "label": "回顾与生长（评估 / 转正）" }
+  ],
+  "groups": [
+    { "id": "whitebox", "label": "白盒约束：判断有据", "lane": "decision", "fromCol": 4, "toCol": 5, "variant": "emphasis" },
+    { "id": "memory_stream", "label": "记忆流（append-only / 归档 / 检索）", "lane": "memory", "fromCol": 2, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["boot", "task", "inject", "runstart", "pipeline", "mount", "checkpoint", "review", "writeback", "growth"],
+  "nodes": [
+    { "id": "boot", "lane": "session", "col": 0, "type": "frontend", "label": "会话启动", "sublabel": "协议→MIND→恢复", "tag": "§0.0 铁律" },
+    { "id": "user", "lane": "session", "col": 5, "type": "external", "label": "用户裁决", "sublabel": "锚定/收敛/拍板" },
+    { "id": "task", "lane": "tasking", "col": 0, "type": "backend", "label": "Task 检测", "sublabel": "7 类→流水线" },
+    { "id": "inject", "lane": "tasking", "col": 1, "type": "backend", "label": "上下文注入", "sublabel": "链/包/流水线", "tag": "起点" },
+    { "id": "runstart", "lane": "lifecycle", "col": 1, "type": "backend", "label": "run 状态机", "sublabel": "快照·清单", "tag": "半自动" },
+    { "id": "pipeline", "lane": "lifecycle", "col": 3, "type": "backend", "label": "流水线阶段", "sublabel": "锚→发→收→卡" },
+    { "id": "mount", "lane": "decision", "col": 4, "type": "security", "label": "挂载+调用记录", "sublabel": "判据/骨架/原子", "tag": "42②" },
+    { "id": "mountFix", "lane": "decision", "col": 5, "type": "security", "label": "验真失败", "sublabel": "改名/改挂" },
+    { "id": "checkpoint", "lane": "memory", "col": 4, "type": "database", "label": "检查点存档", "sublabel": "run-state·产出", "tag": "白盒④" },
+    { "id": "recall", "lane": "memory", "col": 2, "type": "database", "label": "记忆流/检索", "sublabel": "recall·归档", "tag": "下次起点" },
+    { "id": "writeback", "lane": "memory", "col": 5, "type": "database", "label": "回写", "sublabel": "链·有效性·明细" },
+    { "id": "review", "lane": "growth", "col": 4, "type": "backend", "label": "05-review", "sublabel": "评分·观测·评估", "tag": "43" },
+    { "id": "growth", "lane": "growth", "col": 5, "type": "backend", "label": "生长/转正", "sublabel": "3验→正式" }
+  ],
+  "edges": [
+    { "id": "boot-task", "from": "boot", "to": "task", "variant": "default" },
+    { "id": "task-inject", "from": "task", "to": "inject", "variant": "emphasis" },
+    { "id": "inject-runstart", "from": "inject", "to": "runstart", "variant": "default" },
+    { "id": "runstart-pipeline", "from": "runstart", "to": "pipeline", "variant": "default" },
+    { "id": "pipeline-mount", "from": "pipeline", "to": "mount", "label": "决策挂载", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "drop", "labelSegment": 1 },
+    { "id": "mount-checkpoint", "from": "mount", "to": "checkpoint", "variant": "default", "fromSide": "bottom", "toSide": "top", "route": "drop" },
+    { "id": "mount-fix", "from": "mount", "to": "mountFix", "label": "验真失败", "variant": "security", "role": "error", "fromSide": "right", "toSide": "left", "labelAt": [578, 428] },
+    { "id": "fix-retry", "from": "mountFix", "to": "mount", "variant": "dashed", "role": "return", "fromSide": "bottom", "toSide": "top", "route": "drop" },
+    { "id": "checkpoint-review", "from": "checkpoint", "to": "review", "variant": "default" },
+    { "id": "review-writeback", "from": "review", "to": "writeback", "label": "评分/观测", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "drop", "labelSegment": 1, "labelAt": [563, 663] },
+    { "id": "writeback-growth", "from": "writeback", "to": "growth", "variant": "default" },
+    { "id": "growth-recall", "from": "growth", "to": "recall", "label": "新知识入链", "variant": "default", "role": "return", "fromSide": "left", "toSide": "right", "route": "bottom-channel", "labelSegment": 1 },
+    { "id": "user-pipeline", "from": "user", "to": "pipeline", "label": "裁决", "variant": "dashed", "role": "branch", "fromSide": "left", "toSide": "right", "route": "outside-right", "labelSegment": 1 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "起点与方向",
+      "items": [
+        "harness 不替思考：只改起点（记忆/上下文）与方向（判据/方法/原子）",
+        "判据 = 岔路口标准；骨架 = 知识体系（可推理/可质疑/可分析）；原子 = 最小可执行动作",
+        "三者以文件为唯一来源，由真实 run 与读书沉淀（带来源+圈选）",
+        "free 闲聊/问答不走流水线；判不了的任务＝问用户（红线 5）"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "三层与环",
+      "items": [
+        "模式层（协议/格式/原语）= 可分发（空包导出 H-02）",
+        "内容层（判据/原子/骨架/叙事链）= 个人定制，只生长不编造",
+        "项目层（接入件/run/docs）= 跟随项目，不进模板",
+        "回写 = 生长入环；记忆流 = 下个 run 起点——框架是活的"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "白盒约束与审计",
+      "items": [
+        "42② 判断有据：每个决策挂得住判据；34/36：每步踩在哪颗原子写得清清楚楚",
+        "43 三件事：决策可追溯 · 按骨架评分 · 观测原子（用没用/带偏没）",
+        "22 三死穴：存了≠用了、知道≠会做、平均数方向感——调用即显式+留痕+可评估",
+        "每 5 波/章五维审计（机检+人工快检）；红线 7：模式先确认再普适化"
+      ]
+    }
+  ]
+}
