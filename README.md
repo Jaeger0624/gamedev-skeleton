@@ -66,6 +66,8 @@ dsh plugin --profile web add <path>/gamedev-harness-dashboard
 
 插件提供：侧边栏「Harness 总控台」（概览/项目/原子/判据/生长）+ 一套 `harness_*` 工具（状态/注入/run 流转/生长/检索）。
 
+**会话启动链（M3′）**：接入框架的工作区自动注入运行协议——DSH 工作区指令候选清单含 `HARNESS-PROTOCOL.md`（默认预设 `harness-standard`，方案见 `docs/DEVELOPMENT-PLAN.md` 阶段 2）；新会话无需手动选择预设即可完成 协议→心智→恢复→自检。实验预设（router-*）未含该清单，使用的项目请选 `harness-project` 预设。
+
 ## 成长模式：两条轨
 
 | 轨 | 输入 | 流程 | 产出 |

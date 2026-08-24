@@ -27,12 +27,19 @@
   e. **骨架注入按需裁剪**：PACK 引用优先（[pack]）+ 每块上限 4 + 总量上限 14（[block]）——修复"全量 63 条=上下文过载+术语榜样"（注入即起点治理）。
 - **产出/验收**：冒烟脚本 `scripts/smoke-phase1.mjs` **19/19 PASS**（f527e7c + 4c77136，feature/framework-upgrade 分支）；ADAPTER 契约同步（2026-08-24 版本联动条）。
 
-## 阶段 2 · M3′ 会话启动链（继承链第一环，≤半天决策 + 1-2h 实施）
+## 阶段 2 · M3′ 会话启动链（继承链第一环）✅ 2026-08-24 完成
 
 - **目标**：新会话"进得来、记得读协议"——不靠用户记得选预设。
-- **分支 A**（DSH 支持多协议注入）：接入配置/插件实现 → 协议自动进会话。
-- **分支 B**（不支持）：preset 契约化——`START-HERE`/README 明示"项目会话=Harness 项目预设"；可行时 preset 排序提前；启动自检报告（三实体自检+恢复状态）已内建，确认链路。
-- **验收**：新开项目会话，未经用户提示即完成协议→心智→恢复→自检（模拟或用户首次实测）。
+- **阶段 0 判定（核实结论）**：DSH **支持多协议注入——分支 A 成立**。`@deepseek-ai/dsh-agent-instructions`（active）`instructionFileCandidates` 可配置（默认 `["AGENTS.md","CLAUDE.md"]`），按 项目根→cwd 目录链逐目录发现、多段注入、带字节预算与截断；默认预设 `standard` 经 standing scope 挂载该插件 → AGENTS.md 早已对所有会话自动注入（框架工作区实证：router-standard 会话亦注入，无需 harness-project 预设）。**缺口唯一**：候选清单未含 `HARNESS-PROTOCOL.md`——星尘叙事者项目默认会话只注入 Maker 托管 AGENTS.md（55.4KB 纯引擎政策）+ CLAUDE.md（81B），设计协议完全靠自发现。
+- **分支 B**（preset 契约化）：**未选**。分支 A 成立后不再必要；harness-project 预设保留为"选对时"条件解（persona 铁律+工具面），与 A2 注入（无条件解）互补（见 ADR）。
+- **实施（A2 治本；用户拍板：A2 + maxBytes 98304 + 预设留用户目录/仓库只登记文档）**：
+  a. 新预设 `~/.dsh/.agent-presets/harness-standard`（系统 standard plane 副本 + `agent-instructions` 行补候选 + `maxBytes: 98304`；preset.yml `order: 2`）；
+  b. `harness-project` 预设同步同差异行（选中路径亦注入）；
+  c. profile `cordis.yml`：`agent-presets.default: standard → harness-standard`（候选=文件名清单：无该文件的项目行为不变）；
+  d. 冒烟 `scripts/smoke-phase2.mjs` **16/16 PASS**（框架工作区回归 / 修复前后对比=缺口实锤 / 截断保末段语义 / 预设 loader 同构校验）；
+  e. ADR `2026-08-24-m3-session-startup-chain.md`。
+- **已知限制**：①`router-standard` 等实验预设未含差异行（红线 7：未点名不普适化——遇用再评）；②DSH 升级后 harness-standard 副本可能落后系统 standard → 升级时重跑 smoke + diff 对账；③FRAMEWORK-MIND.md 保持"协议内读"不注入（完整段/不得跳设计不变）；④`cordis.yml` 改动**重启 DSH 后对新会话生效**。
+- **验收**：模拟 = smoke-phase2 16/16；用户首次实测 = 重启 DSH 后在星尘叙事者开新会话（默认预设、不选 harness-project），工作区指令应含 `HARNESS-PROTOCOL.md` 段。
 
 ## 阶段 3 · 流程生长轨（动态沉淀的制度壳，1-2h 文档）
 

@@ -151,7 +151,7 @@
 | G-17 | **已建 7 原子执行手册体检**（7/7 达标；subtraction-judgment 信号补强） | **已完成 2026-08-24** |
 | G-18 | **框架心智基线+启动注入**（FRAMEWORK-MIND + AGENTS §0.0 启动铁律 + 恢复入口勾选） | **已完成 2026-08-24** |
 | G-20 | **沉淀落库机检**（2026-08-24 轮15 发现）：轮13 的 3 判据+9 骨架只写 settled/日志/叙事链、未创建全局骨架文件（12 条文件系统缺失，已三线恢复补建）——扩展 check-book-consistency 加 SINK 检查（settled yield 实体 slug 全部存在于文件系统；正负测试 PASS；顺带暴露并修正轮15 候选 low-risk-probing 误入 atoms 数组的归属问题） | **已完成 2026-08-24** |
-| G-21 | **项目会话启动减负**（2026-08-24）：①harness-project agent preset（persona 注入启动铁律，~/.dsh/.agent-presets/harness-project）②DSH 工作区对"第二协议文件"（HARNESS-PROTOCOL.md）的自动注入未实现——当前=预设注入+协议文件自发现；若 DSH 支持多协议文件/工作区指令扩展，合并进启动自动链 | 部分完成（预设已建；自动注入待宿主支持） |
+| G-21 | **项目会话启动减负**（2026-08-24）：①harness-project agent preset（persona 注入启动铁律）②经阶段 2 核实 DSH **支持**多文件注入（agent-instructions `instructionFileCandidates` 可配置）→ 已接启动自动链：新预设 harness-standard（standard 副本+候选差异行+maxBytes 98304）+ 默认预设切换 + harness-project 同步（M3′ 全链，ADR 2026-08-24-m3-session-startup-chain；smoke-phase2 16/16） | **完成 2026-08-24**（重启 DSH 生效；限制：实验预设未含差异行 / 升级需对账） |
 
 ### P1 · 框架可迁移性（模式/内容分层，2026-08-23 用户提出）
 
