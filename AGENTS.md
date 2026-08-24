@@ -27,7 +27,7 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 | 触发信号（用户意图） | Task 类型 | 进入流水线 |
 |---|---|---|
 | 设计卡牌/单位/遗物/事件等**具体设计单元** | `unit-design` | `$HARNESS/pipelines/card-batch-design.md` |
-| 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（首版已建，未实测，见 §4） |
+| 探讨玩法/立项/概念孵化/未定方向的发散 | `incubation` | `$HARNESS/pipelines/incubation.md`（v2：坐标锚定入口+品类分型，见 §4） |
 | **分享书/文章/讲座/视频，要求提取方法体系或观点并沉淀** | `knowledge-sinking` | `$HARNESS/pipelines/knowledge-sinking.md`（待建，见 §4 与进度文档 E 组） |
 | **读书（继续读某本书的一节，交流取舍、沉淀）** | `reading` | `books/<slug>/` 书级状态机 + 阅读轮（见 §2 与进度文档 §5.4/G 组；单节沉淀复用 knowledge-sinking） |
 | 审查/修改/迭代已有设计产出 | `design-review` | 定位原 run 的检查点，从对应阶段续走 |
@@ -78,8 +78,8 @@ harness 不替你思考。它只改变你出发时的**起点**（记忆/上下�
 
 ## 4. 骨架缺口登记（执行中遇到即记录）
 
-- `pipelines/incubation.md` **已建**（2026-08-22 首版沉淀，无实测）——执行首个真实 `incubation` run 后须修订；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
-- `skeleton/` 已有 4 条（game-mechanics ×1 / fictional-player ×3；design-philosophy 待生长）——生长来源 = **真实项目复盘 或 外部输入**（书/文章/讲座，须带来源 + 用户圈选确认）；继续禁止无来源编造；条目清单见 `skeleton/_INDEX.md`
+- `pipelines/incubation.md` **已建并修订 v2**（2026-08-22 首版；2026-08-24 星尘叙事者首个真实 run 阶段 0-2 实证后修订——坐标锚定入口 + story 版孵化协议固化（锚定/切片/打分制/收敛信号），其余品类分型待各自 run 验证，禁止先编后验）；**阶段 3 后可执行性未实测**（当前 run 暂停在阶段 3 前）；`pipelines/level-design.md`（单关卡设计）**未建**——puzzle PACK 已引用「待建」
+- `skeleton/` 已有 63 条（game-mechanics ×31 / fictional-player ×14 / design-philosophy ×18）——生长来源 = **真实项目复盘 或 外部输入**（书/文章/讲座/视频，须带来源 + 用户圈选确认）；继续禁止无来源编造；条目清单见 `skeleton/_INDEX.md`
 - `pipelines/knowledge-sinking.md` **未建**——外部输入沉淀模式（来源提取→拆解→审计→用户圈选→写入）已立规范（见进度文档 §5 与 E 组），首篇输入试跑后沉淀为流水线
 - 双轨检索：字面轨**已建**（`harness_recall` BM25 段落检索）；向量轨**未建**——接 DSH mnemon 记忆空间（不自建 embedding）
 - 度量闭环**无真实数据**：评分趋势 0 条 / 原子验证 0/3 / 判据有效性无真实 run 行——机制全就位，只欠真实 run 点亮（待办 A-01）
